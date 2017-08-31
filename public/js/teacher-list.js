@@ -1,5 +1,7 @@
-define(['jquery','template','bootstrap'],function($,template){
-   console.log(123);
+define(['jquery','template','util','bootstrap'],function($,template,util){
+   //console.log(location.pathname);
+   //设置导航菜单选中
+   util.setMenu(location.pathname);
    //调用后台接口，获取列表数据
    $.ajax({
    	type:'get',
