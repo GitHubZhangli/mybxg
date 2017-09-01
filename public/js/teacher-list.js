@@ -1,6 +1,6 @@
 define(['jquery','template','util','bootstrap'],function($,template,util){
-  var ret = util.qs('uname');
-   console.log(ret);
+  // var ret = util.qs('uname');
+  //  console.log(ret);
    // util.qs('key');
    //console.log(location.pathname);
    //设置导航菜单选中
@@ -15,9 +15,6 @@ define(['jquery','template','util','bootstrap'],function($,template,util){
      //解析数据，渲染页面
      var html=template('teacherTpl',{list:data.result});
      $('#teacherInfo').html(html);
-
-
-
 
 
      		//绑定预览单击事件
