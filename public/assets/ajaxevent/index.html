@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuer Ajax 全局事件</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #F7F7F7;
+		}
+
+		table {
+			width: 900px;
+			border: 1px solid #CCC;
+			border-collapse:collapse;
+			margin: 50px auto;
+		}
+
+		caption {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+
+		td, th {
+			height: 40px;
+			text-align: center;
+			border: 1px solid #CCC;
+		}
+
+		button {
+			display: block;
+			margin: 10px auto;
+		}
+
+		.loading {
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<table>
+		<caption>jQuery Ajax 全局事件</caption>
+		<tr>
+			<th>操作</th>
+			<th>ajaxStart</th>
+			<th>ajaxSend</th>
+			<th>ajaxSuccess</th>
+			<th>ajaxError</th>
+			<th>ajaxComplete</th>
+			<th>ajaxStop</th>
+			<th>Loading状态</th>
+		</tr>
+		<tr>
+			<td>
+				<button class="btn1">点此获取</button>
+				<button class="btn2">点此获取</button>
+			</td>
+			<td><span class="start">被执行了...</span></td>
+			<td><span class="send">被执行了...</span></td>
+			<td><span class="success">被执行了...</span></td>
+			<td><span class="error">被执行了...</span></td>
+			<td><span class="complete">被执行了...</span></td>
+			<td><span class="stop">被执行了...</span></td>
+			<td><img class="loading" src="./images/loading.gif" alt=""></td>
+		</tr>
+	</table>
+	<script src="./js/jquery.min.js"></script>
+	<script>
+
+		$('.btn1').on('click', function () {
+			$.ajax({
+				url: '01.php'
+			});
+		});
+
+		$('.btn2').on('click', function () {
+			$.ajax({
+				url: '02.php'
+			});
+		});
+
+		// 上述6个事件可以绑定给任一DOM元素
+		$('.start').ajaxStart(function () {
+			console.log('start');
+			$(this).css('color', 'red');
+		});
+
+		$('.send').ajaxSend(function () {
+			console.log('send');
+			$(this).css('color', 'red');
+		});
+
+		$('.success').ajaxSuccess(function () {
+			console.log('success');
+			$(this).css('color', 'red');
+		});
+
+		$('.error').ajaxError(function () {
+			console.log('error');
+			$(this).css('color', 'red');
+		});
+
+		// 页面里全部Ajax都结束
+		$('.stop').ajaxStop(function () {
+			console.log('stop');
+			$(this).css('color', 'red');
+		});
+
+		// 单一Ajax请求完成
+		$('.complete').ajaxComplete(function () {
+			console.log('complete');
+			$(this).css('color', 'red');
+		});
+
+		$('.loading').ajaxStart(function () {
+			$(this).show();
+		});
+
+		$('.loading').ajaxStop(function () {
+			$(this).hide();
+		});
+	</script>
+</body>
+</html>
