@@ -6,7 +6,7 @@ define(['jquery'],function($){
 		},
 		qs:function(key){//获取指定的URL参数值
 			var param = location.search.substring(1);
-			console.log(location);
+			// console.log(location);
 			var result = null;
 			if(param){
 				var kvs = param.split('&');
