@@ -49,8 +49,8 @@ define(['jquery','template','util','ckeditor','validate','form'],function($,temp
 				sendForm:false,
 				valid:function(){
 					//处理富文本提交
-					for(var instance in CKEDITOR.instance){
-						CKEDITOR.instance[instance].updateELement();
+					for(var instance in CKEDITOR.instances){
+						CKEDITOR.instances[instance].updateElement();
 					}
 					//提交表单
 					$(this).ajaxSubmit({
@@ -59,8 +59,9 @@ define(['jquery','template','util','ckeditor','validate','form'],function($,temp
 						data:{cs_id:csId},
 						dataType:'json',
 						success:function(data){
+							console.log(data);
 							if(data.code==200){
-								location.href='/course/picture?cs_id'+data.result.cs_id;
+								location.href='/course/picture?cs_id='+data.result.cs_id;
 							}
 						}
 					})
