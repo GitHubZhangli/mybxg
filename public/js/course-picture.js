@@ -10,16 +10,19 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
 		data:{cs_id:csId},
 		dataType:'json',
 		success:function(data){
-			//console.log(data);
+			console.log(data);
 			//解析数据，渲染页面
 			var html = template('pictureTpl',data.result);
 			$('#pictureForm').html(html);
+
+
+		
 			//处理封面上传
 			$('#upfile').uploadify({
 				width:80,
 				height:'auto',
-				buttonText:'选择图片',
-				itemTemplate:'<span></span>',
+				buttonText : '选择文件',
+		      	itemTemplate : '<span></span>',
 				buttonClass:'btn btn-success btn-sm',
 				swf:'/public/assets/uploadify/uploadify.swf',
 				uploader:'/api/uploader/cover',
@@ -92,24 +95,22 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
 
 			//处理按钮的点击状态
 			$('#cropBtn').click(function(){
-				var flag = $(this).attr('data-flag');
+				var flag=$(this).attr('data-flag');
 				if(flag){
-					//再次点击，把裁切好的尺寸信息提交到后台
-					//console.log(1);
-					$('#cropForm').ajaxSubmit({
-						type:'post',
-						url:'/api/course/update/picture',
-						data:{cs_id:csId},
-						dataType:'json',
-						success:function(data){
-							console.log(data);
-							if(data.code==200){
-								location.href='/course/lesson?cs_id='+data.result.cs_id;
-							}
-						}
-					})
+               	//再次点击
+               	$('#cropForm').ajaxSubmit({
+               		type:'post',
+               		url:'/api/course/update/picture',
+               		data:{cs_id:csId},
+               		dataType:'json',
+               		success:function(data){
+               			if(data.code==200){
+               				location.href='/course/lesson?cs_id='+data.result.cs_id;
+               			}
+               		}
+               	})
 				}else{
-					//console.log(2);
+					console.log(2);
 					//进行图片裁切
 					cropImage();
 					//第一次点击.修改按钮状态
@@ -121,3 +122,5 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
 		}
 	})
 });
+
+
