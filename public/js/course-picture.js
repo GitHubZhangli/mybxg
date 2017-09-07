@@ -106,6 +106,7 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
                		success:function(data){
                			if(data.code==200){
                				location.href='/course/lesson?cs_id='+data.result.cs_id;
+               				console.log(cs_id);
                			}
                		}
                	})
